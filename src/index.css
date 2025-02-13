@@ -4,6 +4,19 @@
 
 
 .active{
-    color:green
+    background-color:#08ac0a;
+    color: white;
     
+}
+.btn {
+    @apply transition-all duration-700 ease-in-out 
+           opacity-0 translate-y-full 
+           focus:ring-4 font-medium rounded-lg 
+           text-sm px-5 py-2.5 me-2 mb-2 
+           focus:outline-none;
+}
+
+/* عند تمرير الماوس فوق العنصر الأب (group) */
+.group:hover .btn {
+    @apply opacity-100 translate-y-0;
 }

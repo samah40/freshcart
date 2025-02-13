@@ -10,6 +10,10 @@ import Brands from "./components/Brands/Brands"
 import AuthContextProvider from "./Context/Authcontext"
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"
 import Unauthenticated from "./components/unauthenticated/unauthenticated"
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import ProductDetails from "./components/ProductDetails/ProductDetails"
+
+
 
 
 const router =createBrowserRouter([
@@ -18,6 +22,8 @@ const router =createBrowserRouter([
       {index:true,element:<ProtectedRoute><Home/></ProtectedRoute>},
       {path:"home",element:<ProtectedRoute><Home/></ProtectedRoute>},
       {path:"products",element: <ProtectedRoute><Products/></ProtectedRoute>},
+      {path:"productDetails/:productId",element: <ProtectedRoute><ProductDetails/></ProtectedRoute>},
+ 
       {path:"categories",element: <ProtectedRoute><Categories/></ProtectedRoute>  },
       {path:"brands",element:<ProtectedRoute><Brands/></ProtectedRoute>},
       {path:"register",element:<Unauthenticated><Register/></Unauthenticated>},
