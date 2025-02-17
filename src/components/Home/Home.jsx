@@ -1,3 +1,4 @@
+import { Helmet } from "react-helmet"
 import MainSlider from "../MainSlider/MainSlider"
 import CategorySlider from "./component/CategorySlider/CategorySlider"
 import RecentProduct from "./component/RecentProduct/RecentProduct"
@@ -9,6 +10,11 @@ import RecentProduct from "./component/RecentProduct/RecentProduct"
  
   return(
     <>
+    <Helmet>
+                
+                <title>home page</title>
+                
+            </Helmet>
   <div>
   <MainSlider/>
   <CategorySlider/>

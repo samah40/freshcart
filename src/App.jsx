@@ -12,6 +12,12 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute"
 import Unauthenticated from "./components/unauthenticated/unauthenticated"
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import ProductDetails from "./components/ProductDetails/ProductDetails"
+import { Offline } from "react-detect-offline"
+import { CiWifiOff } from "react-icons/ci"
+import CartContextProvider from "./Context/CartContext"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import Cart from "./components/Cart/Cart"
+import { Toaster } from "react-hot-toast"
 
 
 
@@ -19,11 +25,11 @@ import ProductDetails from "./components/ProductDetails/ProductDetails"
 const router =createBrowserRouter([
   {path:"",element: <Layout/>, children:
     [
-      {index:true,element:<ProtectedRoute><Home/></ProtectedRoute>},
+      {index:true, element:<ProtectedRoute><Home/></ProtectedRoute>},
       {path:"home",element:<ProtectedRoute><Home/></ProtectedRoute>},
       {path:"products",element: <ProtectedRoute><Products/></ProtectedRoute>},
       {path:"productDetails/:productId",element: <ProtectedRoute><ProductDetails/></ProtectedRoute>},
- 
+      {path:"cart",element: <ProtectedRoute><Cart/></ProtectedRoute>},
       {path:"categories",element: <ProtectedRoute><Categories/></ProtectedRoute>  },
       {path:"brands",element:<ProtectedRoute><Brands/></ProtectedRoute>},
       {path:"register",element:<Unauthenticated><Register/></Unauthenticated>},
@@ -33,13 +39,24 @@ const router =createBrowserRouter([
     ]
   }
 ])
-
+const client=new QueryClient()
 export default function App() {
   return (
     <div>
-   <AuthContextProvider>
+      <QueryClientProvider client={client}>
+   <AuthContextProvider >
+      <CartContextProvider>
+   <Offline>
+    <div className="offline fixed bottom-8 left-8 bg-gray-100 z-30 px-2 py-2 rounded font-medium rounded-l">
+    <CiWifiOff className="inline mr-2 text-xl " />
+  you are offline now !
+    </div>
+  </Offline>
    <RouterProvider router={router}/>
+   </CartContextProvider>
    </AuthContextProvider>
+</QueryClientProvider>
+<Toaster />
     </div>
   )
 }

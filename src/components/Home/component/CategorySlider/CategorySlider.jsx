@@ -1,17 +1,21 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
+
 import Slider from "react-slick";
+import LoaderScreen from "../../../Loaderscreen/Loaderscreen";
+import useCategories from "../../../../CustomHooks/usecategories";
 
 export default function CategorySlider() {
-  const [categories, setCategories] = useState([]);
+  
 
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToShow: 6,
-    slidesToScroll: 2,
+    slidesToScroll: 3,
     arrows:true,
+    autoplay:true,
+    autoplaySpeed: 2000,
+    cssEase: "linear",
     responsive: [
         {
           breakpoint: 1200,
@@ -52,27 +56,19 @@ export default function CategorySlider() {
         }
       ]
   };
-
-  async function getCategories() {
-    try {
-      const res = await axios.get(
-        "https://ecommerce.routemisr.com/api/v1/categories"
-      );
-      setCategories(res.data.data);
-    } catch (error) {
-      console.error("Error fetching categories:", error);
-    }
-  }
-
-  useEffect(() => {
-    getCategories();
-  }, []);
+const {data,isLoading,isError}=useCategories()
+if(isLoading){
+ return <LoaderScreen/>
+}
+if(isError){
+ return <h2 className="mx-auto ">please try again</h2>
+}
 
   return (
-    <div className="my-8 mb-10  overflow-hidden mx-10 "> 
+    <div className="my-8 mb-10  overflow-hidden mx-10  p-10"> 
       <Slider {...settings} >
-        {categories.map((category) => (
-          <div key={category._id} >
+        {data?.data?.data.map((category) => (
+          <div key={category._id} className="p-2" >
             <img
               src={category.image}
               className="w-full h-[300px] object-cover"
