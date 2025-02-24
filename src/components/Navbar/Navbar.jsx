@@ -30,6 +30,7 @@ function handlelogout(){
             <li ><NavLink className="block py-2 px-3 text-[#79797a] rounded hover:bg-[#08ac0a] hover:text-white  duration-300 transition-all " to="products">Products</NavLink></li>
             <li ><NavLink className="block py-2 px-3 text-[#79797a] rounded hover:bg-[#08ac0a] hover:text-white  duration-300 transition-all " to="categories">Categories</NavLink></li>
             <li ><NavLink className="block py-2 px-3 text-[#79797a] rounded hover:bg-[#08ac0a] hover:text-white  duration-300 transition-all " to="brands">Brands</NavLink></li>
+            <li ><NavLink className="block py-2 px-3 text-[#79797a] rounded hover:bg-[#08ac0a] hover:text-white  duration-300 transition-all " to="wishlist">Wish List</NavLink></li>
           </ul>: ""}
         </div>
         <div className="flex justify-center items-center gap-3">

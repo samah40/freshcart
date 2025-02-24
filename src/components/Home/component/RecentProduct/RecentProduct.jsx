@@ -6,8 +6,10 @@ import { Link } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
 import { useContext, useState } from "react"
 import { cartcontext } from "../../../../Context/CartContext"
+import {WishListContext} from "../../../../Context/WishListcontext"
 import toast from "react-hot-toast"
 import LoaderCart from "../../../LoaderCart/LoaderCart"
+import { FaRegHeart } from "react-icons/fa"
 
 
 
@@ -15,14 +17,29 @@ import LoaderCart from "../../../LoaderCart/LoaderCart"
 
  export default function RecentProduct() {
   const {addToCart} =useContext(cartcontext)
-
+const {getAllProductWish, addProductWish}= useContext(WishListContext)
   const [showLoader, setShowLoader] = useState(false);
+  const [wishList, setWishList] = useState(false)
+   async function handleAddWish(id){
+
+    const  res=await addProductWish(id)
+    if(res){
+      toast.success("Product added successfully to your wishlist",{
+        duration:3000,
+        position:"bottom-left"
+      })
+      setWishList(true)
+    }else{
+      toast.error("product has not been added to wishlist")
+      setWishList(false)
+    }
+  }
   async function handleAddProduct(id){
     const res = await addToCart(id)
     if(res){
       toast.success("Product added to cart successfully!",{
         duration:3000,
-        position:"top-center",
+        position:"bottom-left",
        
        })
       
@@ -66,12 +83,17 @@ const allproduct=data?.data.data
        <div className="grid  w-full sm:grid-col-2  md:grid-cols-3 lg:grid-cols-6 gap-2 md:gap-5">
        {allproduct?.map(
          (products)=>
-            <div key={products._id} className="hover:scale-105 duration-200 transition-all rounded-lg p-3 group relative border border-5 hover:border-[#08ac0a] border-transparent">
+            <div key={products._id} className="hover:scale-105  duration-200 transition-all rounded-lg p-3 group relative border border-5 hover:border-[#08ac0a] border-transparent">
 <Link to={`/productDetails/${products?.id}`}>
+<div className="overflow-hidden ">
+< FaRegHeart onClick={()=>{handleAddWish(products?.id)}}
+ className={`absolute right-3 top-2  rounded-3xl bg-transparent  text-red-600  hover:text-white${wishList?"bg-red-600 ": ""} `}  />
 
+</div>
              <img src={products.imageCover} alt={products.title} className="w-full mb-1 h-auto object-cover" />
              <h3 className="text-[#08ac0a] ">{products.category.name}</h3>
              <h2 className="mb-4 font-bold">{products.title.split(" ").slice(0,2).join(" ")}</h2>
+             <h2>{products._id}</h2>
              <div className="flex justify-between items-center">
               
              <p>{products.price} EGP</p>

@@ -6,7 +6,7 @@ export default function useCategories() {
 
     
   async function getAllCategories() {
-    return  axios.get(
+    return await axios.get(
          "https://ecommerce.routemisr.com/api/v1/categories"
        );
       

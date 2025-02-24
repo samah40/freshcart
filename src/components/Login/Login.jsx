@@ -21,7 +21,7 @@ const {setUserToken}=useContext(AuthContext)
 
  async function handleLogin(formValues){
 setIsLoading(true)
-axios.post("https://ecommerce.routemisr.com/api/v1/auth/signin",formValues)
+await axios.post("https://ecommerce.routemisr.com/api/v1/auth/signin",formValues)
 .then((response)=>{
 
 localStorage.setItem("tkn", response.data.token);

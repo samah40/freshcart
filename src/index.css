@@ -19,3 +19,11 @@
 .group:hover .btn {
     @apply opacity-100 translate-y-0;
 }
+
+.main-color{
+    color: #08ac0a;
+}
+
+.bg-main{
+    background-color: #08ac0a;
+}

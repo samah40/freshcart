@@ -19,6 +19,10 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import Cart from "./components/Cart/Cart"
 import { Toaster } from "react-hot-toast"
 
+import Cash from "./components/Cash/Cash"
+import WishList from "./components/WishList/WishList"
+import WishListProvider from "./Context/WishListcontext"
+
 
 
 
@@ -30,7 +34,9 @@ const router =createBrowserRouter([
       {path:"products",element: <ProtectedRoute><Products/></ProtectedRoute>},
       {path:"productDetails/:productId",element: <ProtectedRoute><ProductDetails/></ProtectedRoute>},
       {path:"cart",element: <ProtectedRoute><Cart/></ProtectedRoute>},
+      {path:"cash",element: <ProtectedRoute><Cash/></ProtectedRoute>},
       {path:"categories",element: <ProtectedRoute><Categories/></ProtectedRoute>  },
+      {path:"wishlist",element:<ProtectedRoute><WishList/></ProtectedRoute>},
       {path:"brands",element:<ProtectedRoute><Brands/></ProtectedRoute>},
       {path:"register",element:<Unauthenticated><Register/></Unauthenticated>},
     {path:"login",element:<Unauthenticated><Login/></Unauthenticated>},
@@ -45,6 +51,7 @@ export default function App() {
     <div>
       <QueryClientProvider client={client}>
    <AuthContextProvider >
+    <WishListProvider>
       <CartContextProvider>
    <Offline>
     <div className="offline fixed bottom-8 left-8 bg-gray-100 z-30 px-2 py-2 rounded font-medium rounded-l">
@@ -54,6 +61,7 @@ export default function App() {
   </Offline>
    <RouterProvider router={router}/>
    </CartContextProvider>
+   </WishListProvider>
    </AuthContextProvider>
 </QueryClientProvider>
 <Toaster />
