@@ -8,39 +8,42 @@ export default function WishListProvider({children}) {
 }
 
 async function getAllProductWish(){
-  await  axios.get("https://ecommerce.routemisr.com/api/v1/wishlist",
+ return await  axios.get("https://ecommerce.routemisr.com/api/v1/wishlist",
    {
     headers,
    }
 )
     .then((res)=>{
-        console.log(res.data)
-        return true
+        console.log("wishlist",res.data)
+        return res
     }).catch((err)=>{
         console.log(err)
-        return false
+        return err
     })
 }
-getAllProductWish()
+
 async function addProductWish(id){
-await axios.post("https://ecommerce.routemisr.com/api/v1/wishlist",
+return await axios.post("https://ecommerce.routemisr.com/api/v1/wishlist",
     {
             "productId": id
     },{
         headers,
     }
-).then((res)=>{
-    console.log(res.data);
-    getAllProductWish()
-    
-}).catch((err)=>{
-    console.log(err);
-    
-})
+).then((res)=>res).
+catch((err)=>err)
+}
+function removeItem(id){
+return axios.delete(`https://ecommerce.routemisr.com/api/v1/wishlist/${id}`,{
+  headers:{
+    token:localStorage.getItem("tkn")
+  }
+}).then((res)=>res)
+.catch((err)=>err)
+
 }
 
   return (
-    <WishListContext.Provider value={{getAllProductWish,addProductWish}} >
+    <WishListContext.Provider value={{addProductWish, getAllProductWish,removeItem}} >
       {children}
     </WishListContext.Provider>
   )

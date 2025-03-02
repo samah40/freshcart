@@ -22,6 +22,9 @@ import { Toaster } from "react-hot-toast"
 import Cash from "./components/Cash/Cash"
 import WishList from "./components/WishList/WishList"
 import WishListProvider from "./Context/WishListcontext"
+import ForgetPassword from "./components/ForgetPassword/ForgetPassword"
+import VerifyCode from "./components/VerifyCode/VerifyCode"
+import ResetPassword from "./components/ResetPassword/ResetPassword"
 
 
 
@@ -38,6 +41,9 @@ const router =createBrowserRouter([
       {path:"categories",element: <ProtectedRoute><Categories/></ProtectedRoute>  },
       {path:"wishlist",element:<ProtectedRoute><WishList/></ProtectedRoute>},
       {path:"brands",element:<ProtectedRoute><Brands/></ProtectedRoute>},
+      {path:"forgetPassword",element: <Unauthenticated><ForgetPassword/></Unauthenticated>},
+      {path:"verify-code",element: <Unauthenticated><VerifyCode/></Unauthenticated>},
+      {path:"reset-password",element: <Unauthenticated><ResetPassword/></Unauthenticated>},
       {path:"register",element:<Unauthenticated><Register/></Unauthenticated>},
     {path:"login",element:<Unauthenticated><Login/></Unauthenticated>},
     {path:"*",element:<Notfound/>},

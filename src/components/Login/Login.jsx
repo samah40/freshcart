@@ -82,6 +82,7 @@ setUserToken(response?.data?.token);
      </button>
      
      <p className="pl-4 text-green-800"> Didnot have  account yet ?<span className="font-bold"><Link to={"/register"}>Register Now</Link></span></p>
+    <Link to={"/forgetPassword"}  className="pl-4 text-green-800"> forget your password  ?</Link>
 
  </div>
  

@@ -20,6 +20,7 @@ import { FaRegHeart } from "react-icons/fa"
 const {getAllProductWish, addProductWish}= useContext(WishListContext)
   const [showLoader, setShowLoader] = useState(false);
   const [wishList, setWishList] = useState(false)
+
    async function handleAddWish(id){
 
     const  res=await addProductWish(id)
@@ -87,7 +88,7 @@ const allproduct=data?.data.data
 <Link to={`/productDetails/${products?.id}`}>
 <div className="overflow-hidden ">
 < FaRegHeart onClick={()=>{handleAddWish(products?.id)}}
- className={`absolute right-3 top-2  rounded-3xl bg-transparent  text-red-600  hover:text-white${wishList?"bg-red-600 ": ""} `}  />
+ className={`absolute right-3 top-2  rounded-3xl bg-transparent  text-red-600  hover:text-white hover:bg-red-600 `}  />
 
 </div>
              <img src={products.imageCover} alt={products.title} className="w-full mb-1 h-auto object-cover" />
