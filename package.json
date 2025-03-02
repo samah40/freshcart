@@ -2,11 +2,10 @@
   "name": "e-commerce",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://samah40.github.io/fresh-cart",
+  
   "type": "module",
   "scripts": {
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist",
+  
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
@@ -48,3 +47,5 @@
     "vite": "^6.0.5"
   }
 }
+git add .
+git commit -m "Adding "
